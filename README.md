@@ -1,4 +1,4 @@
-# iris-gorm-demo
+# irisv12-test
 
 与lib-ui对应的服务端代码，使用iris+gorm+mysql搭建的一个restful项目模板
 
