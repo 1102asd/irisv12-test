@@ -9,6 +9,9 @@ import (
 
 type BookRepository interface {
 	Get(m map[string]interface{}) (total int, books []models.Book)
+	GetBookById(id uint) (book models.Book, err error)
+	DelBookById(id uint) (err error)
+	UpdateBookById(book models.Book) (err error)
 }
 type bookRepository struct {
 }
@@ -28,4 +31,27 @@ func (b bookRepository) Get(m map[string]interface{}) (total int, books []models
 		panic("GetBookList Error")
 	}
 	return
+}
+func (b bookRepository) GetBookById(id uint) (book models.Book, err error) {
+	//TODO implement me
+	err = db.First(&book, id).Error
+	if err != nil {
+		log.Println("GetBookById Error:", err)
+	}
+	return
+}
+func (b bookRepository) DelBookById(id uint) (err error) {
+	var book models.Book
+	book.ID = id
+	err = db.Unscoped().Delete(&book).Error //如果直接Delete是软删除
+	return
+}
+func (b bookRepository) UpdateBookById(book models.Book) (err error) {
+	if book.ID != 0 {
+		err := db.Save(&book).Error
+		return err
+	} else {
+		err := db.Create(&book).Error
+		return err
+	}
 }
