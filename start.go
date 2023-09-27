@@ -3,8 +3,8 @@ package main
 import (
 	"flag"
 	"github.com/kataras/iris/v12"
-	"project1/app/conf"
-	"project1/app/route"
+	"irisv12-test/app/conf"
+	"irisv12-test/app/route"
 )
 
 func main() {
@@ -15,11 +15,4 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-}
-
-func newApp() *iris.Application {
-	app := iris.New()
-	app.Configure(iris.WithOptimizations)
-	app.AllowMethods(iris.MethodOptions)
-	return app
 }
