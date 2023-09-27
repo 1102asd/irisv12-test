@@ -1,0 +1,8 @@
+{
+  "username": "root",
+  "password": "001102",
+  "hostname": "127.0.0.1",
+  "port": "3306",
+  "database": "go_test",
+  "serverport": "8080"
+}
