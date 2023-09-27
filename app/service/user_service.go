@@ -1,6 +1,7 @@
 package service
 
 import (
+	"irisv12-test/app/middleware"
 	"irisv12-test/app/models"
 	"irisv12-test/app/repo"
 	"irisv12-test/app/utils"
@@ -38,6 +39,7 @@ func (u *userServices) Login(m map[string]string) (result models.Result) {
 		result.Msg = "用户名或密码错误!"
 		return
 	}
+	user.Token = middleware.GenerateToken(user)
 	result.Code = 0
 	result.Data = user
 	result.Msg = "登录成功"
